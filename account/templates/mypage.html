@@ -17,10 +17,7 @@
 <body>
 
     {% include 'flow.html' %}
-    <div class="container">
-        {% include 'navbar.html' %}
-    </div>
-
+    {% include 'navbar.html' %}
 
     <br>
     <div class="container"  style="font-family: 'Noto Sans KR', sans-serif;">
@@ -37,7 +34,7 @@
                             {{ user.name }}님, CHEER 전시회에 방문하신 것을 환영합니다!
                         </h6>
 
-                      <hr style="background: #fff; height: 2px; border: 0;"><br>
+                      <hr style="background: #000; height: 2px; border: 0;">
                       <h5 style="color: #fff; padding-left: 1.3em;">스크랩 목록</h5>
                         <div class="album py-5 bg-black">
                             <div class="container">
@@ -45,12 +42,11 @@
                                     {% for p in user.scrap_name.all %}
                                     <div class="col">
                                         <div class="card shadow-sm">
-                                            <a href="{% url 'board_detail' pk=p.pk %}"
-                                               style="color: #fff;">
+                                            <a href="{% url 'board_detail' pk=p.pk %}" style="color: #000;">
                                             <img class="bd-placeholder-img card-img-top" vgwidth="100%" height="225" src="{{ p.img.url }}" width="100%" height="225" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
                                             focusable="false" >
                                             <title>Placeholder</title>
-                                            <b style="color: black">{{ p.title }}</b><br>
+                                            <b>{{ p.title }}</b><br>
                                             <button class="category_btn1"><b>{{ p.category }}</b></button><br>
                                             {% for tag in p.Tag.iterator %}
                                                 <button class="tag_btn1"><b>#{{ tag }}</b></button>
@@ -64,17 +60,14 @@
                         </div>
                         <br>
 
-                        <hr style="background: #fff; height: 1px; border: 0;"><br>
-
-
                         <h5 style="color: #fff;  padding-left: 1.3em;">투표내역</h5>
                     <div class="album py-5 bg-black">
                         <div class="container">
+                            {% if user.vote %}
                             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                                 <div class="col">
                                     <div class="card shadow-sm">
-                                        <a href="{% url 'board_detail' user.vote.pk %}"
-                                           style="color: #000; text-decoration:none">
+                                        <a href="{% url 'board_detail' user.vote.pk %}" style="color: #000;">
                                         <img class="bd-placeholder-img card-img-top" vgwidth="100%" height="225" src="{{ user.vote.img.url }}" width="100%" height="225" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice"
                                         focusable="false" >
                                         <b>{{ user.vote.title }}</b><br>
@@ -86,9 +79,11 @@
                                     </div>
                                 </div>
                             </div>
+                            {% else %}
+                            <h6 style="color: #fff;  padding-left: 1.3em;">투표내역이 없습니다. <a href="{% url 'vote' %}">투표하러가기</a></h6>
+                            {% endif %}
                         </div>
                     </div>
-
 
 
                 <br>
