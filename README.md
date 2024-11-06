@@ -1,4 +1,7 @@
 # cheer
+
+[![Preview of PDF](./assets/thumbnail.png)](./assets/cheer.pdf)
+
 1. 조직 깃 레포를 포크 받아서 자신의 레포로 옮긴다
 2. 자신의 레포에서 깃 클론을 받고, 작업한다
 3. 작업을 다 하면 자신의 레포로 커밋한다
